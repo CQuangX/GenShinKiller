@@ -20,3 +20,10 @@ MonoBehaviour:
       <speedMotifier>k__BackingField: 0.225
     <RunData>k__BackingField:
       <speedMotifier>k__BackingField: 1
+  <airborneData>k__BackingField:
+    <JumpData>k__BackingField:
+      <JumpForce>k__BackingField: 10
+    <FallData>k__BackingField:
+      <GravityForce>k__BackingField: 9.8
+    <LandingData>k__BackingField:
+      <LandingTime>k__BackingField: 0

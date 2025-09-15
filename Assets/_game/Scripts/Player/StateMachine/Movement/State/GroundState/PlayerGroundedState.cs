@@ -14,17 +14,21 @@ public class PlayerGroundedState : PlayerMovementState
         base.AddInoutActionsCallback();
 
         stateMachine.player.playerInput.PlayerActions.Movement.canceled += OnMovementCanceled;
+
+        stateMachine.player.playerInput.PlayerActions.Jump.started += OnJumpStarted;
     }
 
     protected override void RemoveInputActionsCallback()
     {
         base.RemoveInputActionsCallback();
         stateMachine.player.playerInput.PlayerActions.Movement.canceled -= OnMovementCanceled;
-    }    
+
+        stateMachine.player.playerInput.PlayerActions.Jump.started -= OnJumpStarted;
+    }
 
     protected virtual void OnMove()
     {
-        if(stateMachine.playerStateReusebleData.shouldWalk)
+        if (stateMachine.playerStateReusebleData.shouldWalk)
         {
             stateMachine.ChangeState(stateMachine.walkingState);
             return;
@@ -37,6 +41,11 @@ public class PlayerGroundedState : PlayerMovementState
     protected virtual void OnMovementCanceled(InputAction.CallbackContext context)
     {
         stateMachine.ChangeState(stateMachine.idleState);
+    }
+    
+    protected virtual void OnJumpStarted(InputAction.CallbackContext context)
+    {
+        stateMachine.ChangeState(stateMachine.jumpState);
     }
     #endregion
 }
